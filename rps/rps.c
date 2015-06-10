@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef enum {rock,paper,scissors} choice;
 
@@ -16,7 +17,7 @@ int main(void){
 		exit(1);
 	}
 	if(player == enemy)
-		printf("It's a DRAW!");
+		printf("It's a DRAW!\n");
 	else if(player == 0 && enemy == 1)
 		printf("You LOST! Enemy chose paper!\n");
 	else if(player == 0 && enemy == 2)
