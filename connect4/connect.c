@@ -6,14 +6,17 @@ int** genMatrix();
 char* transMatrix( int** matrix );
 void printMatrix( char* matrix );
 void getData( int** matrix );
+int compareData( int** matrix );
 
 int main( int argc, char** argv ){
 	int** dataMatrix = genMatrix();
 	char* writeMatrix = transMatrix( dataMatrix );
 	printMatrix( writeMatrix );
-	getData( dataMatrix );
-	writeMatrix = transMatrix( dataMatrix );
-	printMatrix( writeMatrix );
+	do{
+		getData( dataMatrix );
+		writeMatrix = transMatrix( dataMatrix );
+		printMatrix( writeMatrix );
+	}while( !compareData( dataMatrix ) );
 }
 
 //generates data matrix
@@ -61,13 +64,13 @@ char* transMatrix( int** matrix ){
 //prints the data
 
 void printMatrix( char* matrix ){
-	int i, j = 0, c = 0;
+	int i, j = 0, f = 0; // f se refiere al numero de fila
 	printf( " A  B  C  \n");
 	for( i = 0; i < 9; i++ ){
 		j++;
 		printf( "|%c|", matrix[i] );
 		if( j > 2 ){
-			printf( "%d", ++c );
+			printf( "%d", ++f );
 			printf( "\n" );
 			j = 0;
 		}
@@ -81,7 +84,7 @@ void getData( int** matrix ){
 	collumn = getchar();
 	while( collumn != 'A' && collumn != 'B' && collumn != 'C' ){
 		printf( "Not a valid collumn! please enter a new one: " );
-		collumn = 'A';
+		collumn = getchar();
 	}
 	switch(collumn){
 		case 'A':
@@ -106,4 +109,35 @@ void getData( int** matrix ){
 		matrix[row - 1][i] = getint();
 	}
 
+}
+
+//validacion funcional para todas las filas.
+
+int compareData( int** matrix ){
+	int i = 0, j = 0, status = 0;
+	int mv;
+	for( i = 0; i < 3; i++ ){
+		mv = matrix[i][j];
+		if( mv == matrix[i][j + 1]  && mv == matrix[i][j + 2] && mv != 0 ){
+			return 1;
+		}
+	}
+	i = 0;
+	for( j = 0; j < 3; j++ ){
+		mv = matrix[i][j];
+		if( mv == matrix[i + 1][j] && mv == matrix[i + 2][j] && mv != 0 ){
+			return 1;
+		}
+	}
+	j = 0; i = 0;
+	mv = matrix[i][j];
+	if( mv == matrix[i + 1][j + 1] && mv == matrix[i + 2][j + 2] && mv != 0 ){
+		return 1;
+	}
+	i = 0; j = 2;
+	mv = matrix[i][j];
+	if( mv == matrix[i + 1][j - 1] && mv == matrix[i + 2][j - 2] && mv != 0 ){
+		return 1;
+	}
+	return status;
 }
