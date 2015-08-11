@@ -1,0 +1,482 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>Consulta de Notas Ciclo 01-2015</title>
+			<!-- bootstrap & fontawesome -->
+			<link rel="stylesheet" href="bootstrap.min.css" />
+			<link rel="stylesheet" href="font-awesome.min.css" />
+			<link rel="stylesheet" href="jquery.dataTables.min.css" />
+			<link rel="stylesheet" href="jquery.dataTables_themeroller.css" />
+			
+			
+
+			<!-- page specific plugin styles -->
+			<link rel="stylesheet" href="jquery-ui.min.css" />
+			
+
+			<!-- text fonts -->
+			<link rel="stylesheet" href="ace-fonts.css" />
+
+			<!-- ace styles -->
+			<link rel="stylesheet" href="ace.min.css" />
+
+			<!--[if lte IE 9]>
+				<link rel="stylesheet" href="/srn/web/css/ace/ace-part2.min.css" />
+			<![endif]-->
+			
+			<!--[if lte IE 9]>
+			  <link rel="stylesheet" href="/srn/web/css/ace/ace-ie.min.css" />
+			<![endif]-->
+
+			<!-- custom styles -->
+			<link rel="stylesheet" href="styles.css" />
+	<style>
+		/* styling the grid page's grid elements */
+		.center {
+			text-align: center;
+		}
+		.center [class*="col-"] {
+			margin-top: 2px;
+			margin-bottom: 2px;
+			padding-top: 4px;
+			padding-bottom: 4px;
+
+			position: relative;
+			text-overflow: ellipsis;
+		}
+		.center [class*="col-"]  span{
+			position: relative;
+			z-index: 2;
+			display: inline-block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 100%;
+		}
+		.center [class*="col-"]:before {
+			display: block;
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 2px;
+			right: 2px;
+			z-index: 1;
+			border: 1px solid #DDD;
+		}
+
+		.center [class*="col-"]:hover:before {
+			background-color: #FCE6A6;
+			border-color: #EFD27A;
+		}
+		
+		
+	/* reset */
+/* reset */
+body {
+    margin: 0;
+    padding: 0;
+    font: 12px/15px "Helvetica Neue",Arial, Helvetica, sans-serif;
+    color: #555;
+    background: #ffffff;
+}
+
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+a {
+    color: #666FF;
+}
+#content {
+    width: 65%;
+    max-width: 690px;
+    margin: 6% auto 0;}
+
+table {
+    overflow: hidden;
+    border: 1px solid #d3d3d3;
+    background: #fefefe;
+    width: 40%;
+    margin: 1% auto 0;
+    border-radius:5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+th, td {padding:10px 10px 10px; text-align:center; }
+th {padding-top:22px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
+td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+tr.odd-row td {background:#f6f6f6;}
+td.first, th.first {text-align:left}
+td.last {border-right:none;}
+
+td {
+    background: -moz-linear-gradient(100% 10% 90deg, #32A3F9, #8CC7F5);
+    background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f9f9f9), to(#fefefe));
+}
+tr.odd-row td {
+    background: -moz-linear-gradient(100% 10% 90deg, #f6f6f6, #f1f1f1);
+    background: -webkit-gradient(linear, 0% 0%, 0% 25%, from(#f1f1f1), to(#f6f6f6));
+}
+th {
+    background: -moz-linear-gradient(100% 10% 90deg, #e8eaeb, #ededed);
+    background: -webkit-gradient(linear, 0% 0%, 0% 35%,from(#57B1F6), to(#F8FAFC));
+}
+
+table.materia td {
+    background: -moz-linear-gradient(100% 10% 90deg, #e8eaeb, #ededed);
+    background: -webkit-gradient(linear, 0% 0%, 0% 35%,from(#F4BF55), to(#F5D38E));
+}
+
+table.alumno td {
+    background: -moz-linear-gradient(100% 10% 90deg, #e8eaeb, #ededed);
+    background: -webkit-gradient(linear, 0% 0%, 0% 35%,from(#FFFFFF), to(#FFFFFF));
+}
+tr:first-child th.first {
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-left-radius:5px; /* Saf3-4 */
+}
+tr:first-child th.last {
+    -moz-border-radius-topright:5px;
+    -webkit-border-top-right-radius:5px; /* Saf3-4 */
+}
+tr:last-child td.first {
+    -moz-border-radius-bottomleft:5px;
+    -webkit-border-bottom-left-radius:5px; /* Saf3-4 */
+}
+tr:last-child td.last {
+    -moz-border-radius-bottomright:5px;
+    -webkit-border-bottom-right-radius:5px; /* Saf3-4 */
+}
+tf {font: 12px/15px "Helvetica Neue",Arial, Helvetica, sans-serif;
+    color: #555;
+}
+
+.exit-btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.exit-btn { 
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s; 
+}
+.exit-btn-4:before {
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    background: #fff;
+    color: #3399cc;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 140%;
+    font-family: 'Glyphicons Halflings';
+    content: "\e017";
+}
+.exit-btn-4 {
+    padding: 80px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px #2c85b1;
+    background: #3399cc;
+    color: #fff;
+}
+
+	</style>
+	</head>
+	<body>
+		<header> 
+			 
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+							<i class="fa fa-pencil-square"></i>
+							<img src="images/logo_uca.png"  width="40" height="55" alt="" />
+							<b>Universidad Centroamericana Jos&eacute; Sime&oacute;n Ca&ntilde;as  -  Consulta de Notas Ciclo 01-2015 </b>
+					</a>
+
+					<!-- /section:basics/navbar.layout.brand -->
+
+					<!-- #section:basics/navbar.toggle -->
+
+					<!-- /section:basics/navbar.toggle -->
+				</div>
+				</h1>
+				
+				<br></br>
+				
+				
+				<br></br><br></br>
+				<div  class=''aling="right" style="font-weight: bold; float: right; padding-top: -5px; color: #0A7BD2; font-size: 15px; font-family: serif;">
+					
+					<spam>
+											<ul>							          
+								
+					        </ul>
+					        
+					</spam>
+				</div>
+				
+					
+			
+		</header>
+		<div><div style='padding-right:50px; width:100%;text-align:right;'>
+							<a>VASQUEZ MORATAYA CARLOS FERNANDO  (00060414)</a><br />
+							<a>3110 - LIC. EN CIENCIAS DE LA COMPUTACION</a><br />
+							<a href='?logout='><img src='images/logoff.png'>&nbsp; Salir</a>
+						</div></div><table border=1  class='materia'>
+						<tr  >
+							<td class='labelEncabMateria'>Profesor</td>
+							<td class='valorEncabMateria'>AM01871 AMAYA ARAUJO JOSE ENMANUEL</td></tr>
+						<tr>
+							<td class='labelEncabMateria'>Materia</td>
+							<td class='valorEncabMateria'>190100 PROGRAMACION ESTRUCTURADA &nbsp; &nbsp;  Secci&oacute;n - 01 </td></tr>
+					</table><table border=1>
+					<tr>
+						<th class='tituloEvaluacion'>Evaluaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Ponderaci&oacute;n (%)</th>
+						<th class='tituloEvaluacion'>Fecha realizaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Nota</th>
+						<tr>
+							<td class='detalleEvaluacion'>LABORATORIOS</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>9.17</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PROYECTO</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>9.90</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>TAREAS</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>10.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PRIMERA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'>22/04/2015</td>
+							<td class='detalleEvaluacionNota'>8.60</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>SEGUNDA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'>27/05/2015</td>
+							<td class='detalleEvaluacionNota'>8.60</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EVALUACION FINAL</td>
+							<td class='detalleEvaluacion'>30</td>
+							<td class='detalleEvaluacion'>03/07/2015</td>
+							<td class='detalleEvaluacionNota'>7.00</td>
+					
+						<tr>
+							<td colspan=2 ></td>
+							<td class='notaFinalLabel'><b><u>NOTA FINAL</u></b></td>
+							<td class='notaFinal'><b><u>8.6</u></b></td></table><br /><br />
+<table border=1  class='materia'>
+						<tr  >
+							<td class='labelEncabMateria'>Profesor</td>
+							<td class='valorEncabMateria'>FE05581 FEUSSIER BINDER HERMAN</td></tr>
+						<tr>
+							<td class='labelEncabMateria'>Materia</td>
+							<td class='valorEncabMateria'>200068 FISICA I &nbsp; &nbsp;  Secci&oacute;n - 05 </td></tr>
+					</table><table border=1>
+					<tr>
+						<th class='tituloEvaluacion'>Evaluaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Ponderaci&oacute;n (%)</th>
+						<th class='tituloEvaluacion'>Fecha realizaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Nota</th>
+						<tr>
+							<td class='detalleEvaluacion'>DISCUSIONES</td>
+							<td class='detalleEvaluacion'>15</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>6.50</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>LABORATORIOS</td>
+							<td class='detalleEvaluacion'>15</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>8.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>Actividades en línea</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>6.90</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PRIMERA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'>25/04/2015</td>
+							<td class='detalleEvaluacionNota'>5.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>SEGUNDA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'>30/05/2015</td>
+							<td class='detalleEvaluacionNota'>0.90</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EVALUACION FINAL</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'>04/07/2015</td>
+							<td class='detalleEvaluacionNota'>4.70</td>
+					
+						<tr>
+							<td colspan=2 ></td>
+							<td class='notaFinalLabel'><b><u>NOTA FINAL</u></b></td>
+							<td class='notaFinal'><b><u>5.0</u></b></td></table><br /><br />
+<table border=1  class='materia'>
+						<tr  >
+							<td class='labelEncabMateria'>Profesor</td>
+							<td class='valorEncabMateria'>HE04381 HENRIQUEZ RAUDA MAURO HERNAN</td></tr>
+						<tr>
+							<td class='labelEncabMateria'>Materia</td>
+							<td class='valorEncabMateria'>010115 MATEMATICA III (ING.) &nbsp; &nbsp;  Secci&oacute;n - 04 </td></tr>
+					</table><table border=1>
+					<tr>
+						<th class='tituloEvaluacion'>Evaluaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Ponderaci&oacute;n (%)</th>
+						<th class='tituloEvaluacion'>Fecha realizaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Nota</th>
+						<tr>
+							<td class='detalleEvaluacion'>EXAMEN CORTO 1</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'>10/04/2015</td>
+							<td class='detalleEvaluacionNota'>8.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PRIMERA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'>18/04/2015</td>
+							<td class='detalleEvaluacionNota'>6.40</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>SEGUNDA EVALUACION PARCIAL</td>
+							<td class='detalleEvaluacion'>25</td>
+							<td class='detalleEvaluacion'>23/05/2015</td>
+							<td class='detalleEvaluacionNota'>2.40</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>TAREA</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'>23/06/2015</td>
+							<td class='detalleEvaluacionNota'>8.20</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EXAMEN CORTO 2</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'>26/06/2015</td>
+							<td class='detalleEvaluacionNota'>7.30</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EVALUACION FINAL</td>
+							<td class='detalleEvaluacion'>25</td>
+							<td class='detalleEvaluacion'>02/07/2015</td>
+							<td class='detalleEvaluacionNota'>2.80</td>
+					
+						<tr>
+							<td colspan=2 ></td>
+							<td class='notaFinalLabel'><b><u>NOTA FINAL</u></b></td>
+							<td class='notaFinal'><b><u>4.9</u></b></td></table><br /><br />
+<table border=1  class='materia'>
+						<tr  >
+							<td class='labelEncabMateria'>Profesor</td>
+							<td class='valorEncabMateria'>RI09862 RIVERA BERDUGO IVONNE ALEXANDRA</td></tr>
+						<tr>
+							<td class='labelEncabMateria'>Materia</td>
+							<td class='valorEncabMateria'>090240 PSICOLOGIA APLICADA A LA EMPRESA &nbsp; &nbsp;  Secci&oacute;n - 02 </td></tr>
+					</table><table border=1>
+					<tr>
+						<th class='tituloEvaluacion'>Evaluaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Ponderaci&oacute;n (%)</th>
+						<th class='tituloEvaluacion'>Fecha realizaci&oacute;n</th>
+						<th class='tituloEvaluacion'>Nota</th>
+						<tr>
+							<td class='detalleEvaluacion'>CONTROL DE LECTURA</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>6.50</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>DISCUSION</td>
+							<td class='detalleEvaluacion'>5</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>10.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EJERCICIO PRACTICO 1</td>
+							<td class='detalleEvaluacion'>5</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>8.50</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EJERCICIO PRACTICO 2</td>
+							<td class='detalleEvaluacion'>5</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>9.50</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EJERCICIO PRACTICO 3</td>
+							<td class='detalleEvaluacion'>5</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>9.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EJERCICIO PRACTICO 4</td>
+							<td class='detalleEvaluacion'>10</td>
+							<td class='detalleEvaluacion'></td>
+							<td class='detalleEvaluacionNota'>10.00</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PARCIAL 1</td>
+							<td class='detalleEvaluacion'>15</td>
+							<td class='detalleEvaluacion'>20/04/2015</td>
+							<td class='detalleEvaluacionNota'>6.50</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>PARCIAL 2</td>
+							<td class='detalleEvaluacion'>20</td>
+							<td class='detalleEvaluacion'>20/05/2015</td>
+							<td class='detalleEvaluacionNota'>5.25</td>
+					
+						<tr>
+							<td class='detalleEvaluacion'>EXAMEN FINAL</td>
+							<td class='detalleEvaluacion'>25</td>
+							<td class='detalleEvaluacion'>06/07/2015</td>
+							<td class='detalleEvaluacionNota'>9.50</td>
+					
+						<tr>
+							<td colspan=2 ></td>
+							<td class='notaFinalLabel'><b><u>NOTA FINAL</u></b></td>
+							<td class='notaFinal'><b><u>7.9</u></b></td></table><br /><br />	</body>
+</html>
